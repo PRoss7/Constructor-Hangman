@@ -1,13 +1,16 @@
-var words = require("./word");
-
-var letters = function (words) {
-
-    for (var i = 0; i < words[i]; i++) {
 
 
+var letter = function (let) {
+
+    this.char = let;
+    this.show = false;
+    this.showLetter = function () {
+
+        return !(this.show) ? "_" : this.char;
 
     }
 
 }
 
-module.exports = letters();
+module.exports = letter;
+
