@@ -1,15 +1,16 @@
-var letter = require("./letter.js");
+var Letter = require("./letter.js");
 
-function Word(target) {
+function Word(wrd) {
 
-    this.target = target;
+    this.word = wrd
     this.letters = [];
     this.found = false;
     this.getLetter = function () {
 
-        for (var i = 0; i < this.target.length; i++) {
+        for (var i = 0; i < this.word.length; i++) {
 
-            this.letters.push(new letter(this.target[i]));
+            var newLetter = new Letter(this.word[i]);
+            this.letters.push(newLetter);
 
         }
 
@@ -17,30 +18,32 @@ function Word(target) {
 
     this.findWord = function () {
 
-        this.found - this.letters.every(function (currentLet) {
+        if (this.letters.every(function (lttr) {
 
-            return currentLet.show;
+            return lttr.show === true;
 
-        });
+        })) {
 
-        return this.found;
+            this.wordFound = true;
+            return true;
+        }
 
     };
 
-    this.checkLetter = function (guessLetter) {
+    this.checkLetter = function (guessedLetter) {
 
         var toReturn = 0;
 
-        for (var i = 0; i < this.letters.length; i++) {
+        this.letters.forEach(function (lttr) {
 
-            if (this.letters[i].char == guessLetter) {
+            if (lttr.letter === guessedLetter) {
 
-                this.letters[i].show = true;
+                lttr.show = true;
                 toReturn++;
 
             }
 
-        }
+        })
 
         return toReturn;
 
@@ -48,14 +51,27 @@ function Word(target) {
 
     this.wordRender = function () {
 
-        var string = "";
-        for (var i = 0; i < this.letters.length; i++) {
+        var display = "";
 
-            string += this.letters[i].letterRender();
+        // this.letter.forEach(function (lttr) {
+
+        //     var currentLet = lttr.showLetter();
+        //     display += currentLet;
+
+        // });
+
+        for (var i = 0; i < this.letter; i++) {
+
+            var currentLetFunc = function (lttr) {
+
+                var currentLet = lttr.showLetter();
+                display += currentLet;
+
+            }
 
         }
 
-        return string;
+        return display;
 
     };
 
