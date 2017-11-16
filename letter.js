@@ -1,16 +1,27 @@
+var Letter = function (lttr) {
 
-
-var letter = function (let) {
-
-    this.char = let;
+    this.letter = lttr;
     this.show = false;
     this.showLetter = function () {
 
-        return !(this.show) ? "_" : this.char;
+        if (this.letter == " ") {
+
+            this.show = true;
+            return " ";
+
+        } if (this.show === false) {
+
+            return "_";
+
+        } else {
+
+            return this.letter;
+
+        }
 
     }
 
 }
 
-module.exports = letter;
+module.exports = Letter;
 
